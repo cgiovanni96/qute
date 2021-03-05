@@ -4,7 +4,7 @@ const theme: DefaultTheme = {
 	palette: {
 		bg: {
 			default: '#FFF',
-			inverse: '#000'
+			inverse: '#333'
 		},
 		accent: '#F7DF94',
 		text: {

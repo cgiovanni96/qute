@@ -19,6 +19,12 @@ const Home: FC = ({}) => {
 			<QuoteBox>
 				<Quote> {quote.text} </Quote>
 			</QuoteBox>
+
+			<AuthorBox>
+				<Author>{quote.author}</Author>
+
+				<Genre>{quote.genre}</Genre>
+			</AuthorBox>
 		</Base>
 	)
 }
@@ -28,6 +34,7 @@ export default Home
 const Base = styled.main`
 	flex: 1;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 `
@@ -38,6 +45,30 @@ const QuoteBox = styled.section`
 `
 
 const Quote = styled.div`
-	padding: 3rem;
+	padding: 4rem;
 	font-size: ${({ theme }) => theme.typo.size.big};
+`
+
+const AuthorBox = styled.section`
+	margin-top: 1rem;
+	width: 50%;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	transition: all 0.5s ease;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.bg.inverse};
+		color: ${({ theme }) => theme.palette.text.inverse};
+	}
+`
+
+const Author = styled.div`
+	font-size: ${({ theme }) => theme.typo.size.medium};
+	font-weight: ${({ theme }) => theme.typo.weight.bold};
+`
+
+const Genre = styled.div`
+	font-size: ${({ theme }) => theme.typo.size.small};
+	color: ${({ theme }) => theme.palette.text.light};
 `
