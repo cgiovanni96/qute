@@ -12,6 +12,7 @@ const Footer: React.FC = () => {
 export default Footer
 
 const Base = styled.footer`
+	margin-bottom: 2rem;
 	display: flex;
 	justify-content: center;
 `
