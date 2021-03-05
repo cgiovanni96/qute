@@ -10,8 +10,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        display: flex;
-        flex-direction: column;
+        
         background: ${({ theme }) => theme.palette.bg.defautl};
         color: ${({ theme }) => theme.palette.text.default};
         font-family: ${({ theme }) => theme.typo.family};
@@ -20,6 +19,12 @@ const GlobalStyles = createGlobalStyle`
         ${up('sm')} {
             width: 80%;
             margin: auto;
+        }
+
+        & > div {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
     }
 `
