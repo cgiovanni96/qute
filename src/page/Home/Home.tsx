@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
 import { useQuery } from 'react-query'
+import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
-import fetchRandomQuote, {
-	RandomQuote
-} from '../../client/query/fetchRandomQuote'
+import fetchRandomQuote from '../../client/query/fetchRandomQuote'
+import Quote from '../../components/Quote'
+import getAuthorRoute from '../../util/getAuthorRoute'
+import { RandomQuote } from '../../util/types'
 
 const Home: FC = ({}) => {
 	const { isLoading, error, data: quote } = useQuery<RandomQuote, Error>(
@@ -16,12 +18,14 @@ const Home: FC = ({}) => {
 
 	return (
 		<Base>
-			<QuoteBox>
-				<Quote> {quote.text} </Quote>
-			</QuoteBox>
+			<Quote text={quote.text} />
 
 			<AuthorBox>
-				<Author>{quote.author}</Author>
+				<Author>
+					<RouterLink to={`/author/${getAuthorRoute(quote.author)}`}>
+						{quote.author}
+					</RouterLink>
+				</Author>
 
 				<Genre>{quote.genre}</Genre>
 			</AuthorBox>
@@ -37,16 +41,6 @@ const Base = styled.main`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-`
-
-const QuoteBox = styled.section`
-	border-left: 6px solid ${({ theme }) => theme.palette.accent};
-	width: 60%;
-`
-
-const Quote = styled.div`
-	padding: 4rem;
-	font-size: ${({ theme }) => theme.typo.size.big};
 `
 
 const AuthorBox = styled.section`
@@ -66,6 +60,11 @@ const AuthorBox = styled.section`
 const Author = styled.div`
 	font-size: ${({ theme }) => theme.typo.size.medium};
 	font-weight: ${({ theme }) => theme.typo.weight.bold};
+
+	& a {
+		color: inherit;
+		text-decoration: none;
+	}
 `
 
 const Genre = styled.div`
